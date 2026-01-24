@@ -46,6 +46,19 @@
   <div class="bar"></div>
 
   <div class="image-container main-hero">
+    <!-- 3D Background Elements -->
+    <div class="hero-3d-bg">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+      <div class="floating-shape shape-5"></div>
+      <div class="floating-shape shape-6"></div>
+    </div>
+    <!-- Animated Grid Layers -->
+    <div class="grid-layer grid-layer-1"></div>
+    <div class="grid-layer grid-layer-2"></div>
+    <div class="grid-layer grid-layer-3"></div>
     <div class="text-container">
       <div class="text-background">
         <!-- <p class="conference-text">That's a wrap, see you next year!</p> -->
@@ -108,7 +121,7 @@ This year's event features hours of presentations—17 talks in total—covering
           <a href="https://forms.gle/ELm7GgcUEMbvXRjb8" target="_blank" class="text-bracket">Call For Proposals</a>
         </h2>
       </div>
-      <div class="speakers-grid">
+      <!-- <div class="speakers-grid">
         <div class="speaker">
           <img src="https://bsdc.sfo2.cdn.digitaloceanspaces.com/speakers/robbie.jpeg" />
           <div class="speaker-name">Robbie Wagner</div>
@@ -189,7 +202,7 @@ This year's event features hours of presentations—17 talks in total—covering
           <div class="speaker-name">Alex Petros</div>
           <div class="speaker-info"></div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Schedule Section -->
@@ -567,8 +580,6 @@ This year's event features hours of presentations—17 talks in total—covering
 What are you doing here? You should go register for BSDC instead: https://bsdc25.eventbrite.com
     `);
 
-    // PhotoSwipe loaded via UMD script tags above
-
     // Improved scroll performance with requestAnimationFrame
     (function() {
       const nav = document.querySelector('#navbar');
@@ -723,6 +734,66 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
     }
 
     // Shuffle speakers on every page load
+    // 3D Parallax Effect for Hero Section (subtle, non-conflicting)
+    document.addEventListener('DOMContentLoaded', function () {
+      const heroSection = document.querySelector('.image-container.main-hero');
+      const shapes = document.querySelectorAll('.floating-shape');
+      
+      if (heroSection && shapes.length > 0) {
+        let rafId = null;
+        
+        heroSection.addEventListener('mousemove', function(e) {
+          if (rafId) cancelAnimationFrame(rafId);
+          
+          rafId = requestAnimationFrame(function() {
+            const rect = heroSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const moveX = (x - centerX) / centerX;
+            const moveY = (y - centerY) / centerY;
+            
+            // Apply subtle parallax only to translate, not rotation (to avoid conflicts)
+            shapes.forEach((shape, index) => {
+              const intensity = (index + 1) * 0.15;
+              const translateX = moveX * intensity * 15;
+              const translateY = moveY * intensity * 15;
+              
+              // Get base translateZ from computed style or default
+              const computed = window.getComputedStyle(shape);
+              const matrix = computed.transform;
+              let translateZ = '-200px';
+              
+              if (matrix && matrix !== 'none') {
+                // Extract translateZ if present, otherwise use default based on shape
+                const zMatch = computed.transform.match(/translateZ\(([^)]+)\)/);
+                if (zMatch) translateZ = zMatch[1];
+              } else {
+                // Use default translateZ based on shape class
+                if (shape.classList.contains('shape-1')) translateZ = '-200px';
+                else if (shape.classList.contains('shape-2')) translateZ = '-300px';
+                else if (shape.classList.contains('shape-3')) translateZ = '-150px';
+                else if (shape.classList.contains('shape-4')) translateZ = '-250px';
+                else if (shape.classList.contains('shape-5')) translateZ = '-100px';
+                else if (shape.classList.contains('shape-6')) translateZ = '-180px';
+              }
+              
+              shape.style.transform = `translateZ(${translateZ}) translateX(${translateX}px) translateY(${translateY}px)`;
+            });
+          });
+        });
+        
+        // Reset on mouse leave
+        heroSection.addEventListener('mouseleave', function() {
+          if (rafId) cancelAnimationFrame(rafId);
+          shapes.forEach(shape => {
+            shape.style.transform = '';
+          });
+        });
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
       const now = new Date();
       const isFourthOfJuly = now > moment('2026-07-04T08:00:00Z').toDate() && now < moment('2026-07-05T08:00:00Z').toDate();
@@ -743,7 +814,7 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
       speakersGrid.innerHTML = '';
       // Append shuffled speakers
       speakers.forEach(speaker => speakersGrid.appendChild(speaker));
-
+    });
 
 
     let setPixelFireworks = false;

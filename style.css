@@ -182,6 +182,9 @@ html {
   backface-visibility: hidden;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  overflow: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .image-container.main-hero::before {
@@ -208,13 +211,15 @@ html {
   height: 100px;
   background: linear-gradient(to bottom, transparent, var(--retro-black));
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 10;
 }
 
 .text-container {
   color: white;
   max-width: 1000px;
   position: relative;
-  z-index: 2;
+  z-index: 5;
+  transform-style: preserve-3d;
 }
 
 .conference-text, .conference-text span {
@@ -721,7 +726,8 @@ section.sponsors-section h2 {
   text-align: center;
   padding-bottom: 50px;
   position: relative;
-  z-index: 2;
+  z-index: 5;
+  transform-style: preserve-3d;
 }
 
 .sponsors-title {
@@ -1328,4 +1334,155 @@ a {
   width: 100%;
   color: var(--retro-cyan);
   text-shadow: 0 0 5px rgba(6, 182, 212, 0.8);
+}
+/* 3D Background Elements */
+.hero-3d-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Floating 3D Shapes */
+.floating-shape {
+  position: absolute;
+  opacity: 0.2;
+  filter: blur(2px);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, var(--retro-purple), var(--retro-pink));
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  top: 10%;
+  left: 10%;
+  transform: translateZ(-200px) rotateX(45deg) rotateY(45deg);
+  animation: float3d 20s ease-in-out infinite;
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--retro-cyan), var(--retro-purple));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  top: 60%;
+  right: 15%;
+  transform: translateZ(-300px) rotateX(-30deg) rotateZ(45deg);
+  animation: float3d 25s ease-in-out infinite reverse;
+  box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+}
+
+.shape-3 {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, var(--retro-pink), var(--retro-cyan));
+  border-radius: 50%;
+  bottom: 20%;
+  left: 20%;
+  transform: translateZ(-150px) rotateY(60deg);
+  animation: float3d 30s ease-in-out infinite;
+  box-shadow: 0 0 60px rgba(236, 72, 153, 0.3);
+}
+
+.shape-4 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--retro-purple), var(--retro-cyan));
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+  top: 30%;
+  right: 30%;
+  transform: translateZ(-250px) rotateX(60deg) rotateZ(-30deg);
+  animation: float3d 22s ease-in-out infinite reverse;
+  box-shadow: 0 0 35px rgba(139, 92, 246, 0.25);
+}
+
+.shape-5 {
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(135deg, var(--retro-pink), var(--retro-purple));
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translateZ(-100px) rotateX(30deg) rotateY(30deg) rotateZ(15deg);
+  animation: float3d 28s ease-in-out infinite;
+  box-shadow: 0 0 45px rgba(236, 72, 153, 0.25);
+}
+
+.shape-6 {
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(135deg, var(--retro-cyan), var(--retro-pink));
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  bottom: 15%;
+  right: 25%;
+  transform: translateZ(-180px) rotateX(-45deg) rotateY(45deg);
+  animation: float3d 24s ease-in-out infinite reverse;
+  box-shadow: 0 0 40px rgba(6, 182, 212, 0.25);
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateZ(-200px) translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateZ(-180px) translateY(-20px) translateX(15px);
+  }
+  66% {
+    transform: translateZ(-220px) translateY(-15px) translateX(-10px);
+  }
+}
+
+/* Animated Grid Layers for Depth */
+.grid-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+  z-index: 2;
+  will-change: background-position;
+  backface-visibility: hidden;
+}
+
+.grid-layer-1 {
+  background-size: 60px 60px;
+  animation: gridMove3d 20s linear infinite;
+  transform: translateZ(-100px) scale(1.2);
+}
+
+.grid-layer-2 {
+  background-size: 80px 80px;
+  animation: gridMove3d 25s linear infinite reverse;
+  transform: translateZ(-200px) scale(1.5);
+  opacity: 0.06;
+}
+
+.grid-layer-3 {
+  background-size: 100px 100px;
+  animation: gridMove3d 30s linear infinite;
+  transform: translateZ(-300px) scale(2);
+  opacity: 0.04;
+}
+
+@keyframes gridMove3d {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
 }
