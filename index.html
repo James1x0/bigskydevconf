@@ -54,10 +54,16 @@
 
   <div class="image-container main-hero">
     <!-- 3D Background Elements -->
-    <div class="hero-3d-bg">
-      <div class="floating-shape shape-1"></div>
-      <div class="floating-shape shape-2"></div>
-      <div class="floating-shape shape-3"></div>
+    <div class="hero-3d-bg" id="hero-shapes-container">
+      <div class="shape-wrapper" data-shape="0">
+        <div class="floating-shape shape-1"></div>
+      </div>
+      <div class="shape-wrapper" data-shape="1">
+        <div class="floating-shape shape-2"></div>
+      </div>
+      <div class="shape-wrapper" data-shape="2">
+        <div class="floating-shape shape-3"></div>
+      </div>
     </div>
     <div class="text-container">
       <div class="text-background">
@@ -780,6 +786,106 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
     }
     // Example: Uncomment to auto-enable on load
     // togglePixelFireworks(true);
+
+    // --- Hero shapes: morph, click, bounce + hover dodge ---
+    (function () {
+      var PRESETS = ['30% 70% 70% 30% / 30% 30% 70% 70%', '50% 50% 50% 50% / 50% 50% 50% 50%', '25% 25% 25% 25% / 25% 25% 25% 25%', '60% 40% 30% 70% / 50% 60% 40% 50%', '70% 30% 70% 30% / 30% 70% 30% 70%', '40% 60% 50% 50% / 60% 40% 60% 40%'];
+      var SPEED = 55, DODGE_R = 120, DODGE_STR = 0.4, HOVER_ACCEL = 140, MAX_SPEED = 180;
+      var SIZES = [250, 200, 220];
+      var container = document.getElementById('hero-shapes-container');
+      if (!container) return;
+      var wrappers = container.querySelectorAll('.shape-wrapper');
+      var shapes = [];
+      var presetIdx = [0, 0, 0];
+      var mouseX = -1e4, mouseY = -1e4;
+      var lastT = 0;
+      var rect = { left: 0, top: 0, width: 0, height: 0 };
+      var frameCount = 0;
+
+      function rnd(lo, hi) { return Math.random() * (hi - lo) + lo; }
+      function updateRect() {
+        var r = container.getBoundingClientRect();
+        rect.left = r.left;
+        rect.top = r.top;
+        rect.width = r.width;
+        rect.height = r.height;
+      }
+      function init() {
+        updateRect();
+        var W = rect.width, H = rect.height;
+        for (var i = 0; i < 3; i++) {
+          var a = rnd(0, 2 * Math.PI);
+          shapes[i] = {
+            x: rnd(0, Math.max(0, W - SIZES[i])),
+            y: rnd(0, Math.max(0, H - SIZES[i])),
+            vx: SPEED * Math.cos(a),
+            vy: SPEED * Math.sin(a),
+            w: SIZES[i],
+            h: SIZES[i]
+          };
+          shapes[i].x = Math.max(0, Math.min(shapes[i].x, W - shapes[i].w));
+          shapes[i].y = Math.max(0, Math.min(shapes[i].y, H - shapes[i].h));
+        }
+      }
+
+      document.addEventListener('mousemove', function (e) { mouseX = e.clientX; mouseY = e.clientY; });
+      wrappers.forEach(function (w, i) {
+        w.addEventListener('click', function (e) { e.preventDefault(); presetIdx[i] = (presetIdx[i] + 1) % PRESETS.length; w.querySelector('.floating-shape').style.borderRadius = PRESETS[presetIdx[i]]; });
+      });
+      setInterval(function () {
+        for (var i = 0; i < 3; i++) {
+          presetIdx[i] = (presetIdx[i] + 1) % PRESETS.length;
+          wrappers[i].querySelector('.floating-shape').style.borderRadius = PRESETS[presetIdx[i]];
+        }
+      }, 5000);
+      window.addEventListener('resize', function () {
+        updateRect();
+        var W = rect.width, H = rect.height;
+        shapes.forEach(function (s) {
+          s.x = Math.max(0, Math.min(s.x, W - s.w));
+          s.y = Math.max(0, Math.min(s.y, H - s.h));
+        });
+      });
+
+      function loop(now) {
+        requestAnimationFrame(loop);
+        if (lastT === 0) lastT = now;
+        var dt = Math.min((now - lastT) / 1000, 0.1);
+        lastT = now;
+        frameCount++;
+        if (frameCount % 30 === 0) updateRect();
+        var W = rect.width, H = rect.height;
+        var mx = mouseX - rect.left, my = mouseY - rect.top;
+
+        for (var i = 0; i < 3; i++) {
+          var s = shapes[i];
+          s.x += s.vx * dt;
+          s.y += s.vy * dt;
+          if (s.x <= 0) { s.x = 0; s.vx = Math.abs(s.vx); }
+          if (s.x + s.w >= W) { s.x = W - s.w; s.vx = -Math.abs(s.vx); }
+          if (s.y <= 0) { s.y = 0; s.vy = Math.abs(s.vy); }
+          if (s.y + s.h >= H) { s.y = H - s.h; s.vy = -Math.abs(s.vy); }
+
+          var tx = 0, ty = 0;
+          var cx = s.x + s.w / 2, cy = s.y + s.h / 2;
+          var dx = mx - cx, dy = my - cy;
+          var d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (d < DODGE_R) {
+            var t = (1 - d / DODGE_R) * DODGE_STR;
+            tx = (-dx / d) * (DODGE_R - d) * t;
+            ty = (-dy / d) * (DODGE_R - d) * t;
+            s.vx += (-dx / d) * (1 - d / DODGE_R) * HOVER_ACCEL * dt;
+            s.vy += (-dy / d) * (1 - d / DODGE_R) * HOVER_ACCEL * dt;
+            var sp = Math.sqrt(s.vx * s.vx + s.vy * s.vy);
+            if (sp > MAX_SPEED) { s.vx = (s.vx / sp) * MAX_SPEED; s.vy = (s.vy / sp) * MAX_SPEED; }
+          }
+          wrappers[i].style.transform = 'translate3d(' + (s.x + tx) + 'px,' + (s.y + ty) + 'px,0)';
+        }
+      }
+      init();
+      for (var i = 0; i < 3; i++) wrappers[i].style.transform = 'translate3d(' + shapes[i].x + 'px,' + shapes[i].y + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
 
   </script>
   <!-- <script type="module" src="./script.js"></script> -->
