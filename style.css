@@ -15,7 +15,7 @@
   --retro-gray-light: #2a2a2a;
 }
 
-/* Base Styles */
+/* Base Styles - grid on pseudo-element with transform animation for smooth scroll */
 body {
   background-color: var(--retro-black);
   height: 100%;
@@ -28,11 +28,27 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: 
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
     linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
-  animation: gridMove 20s linear infinite;
+  animation: gridMoveTransform 20s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes gridMoveTransform {
+  0% { transform: translateZ(0) translate(0, 0); }
+  100% { transform: translateZ(0) translate(50px, 50px); }
 }
 
 @keyframes gridMove {
@@ -48,7 +64,7 @@ html {
   font-family: "Source Code Pro", sans-serif;
 }
 
-/* Retrowave Grid Overlay */
+/* Retrowave Grid Overlay - promoted layer for scroll performance */
 .retro-grid-overlay {
   position: fixed;
   top: 0;
@@ -58,11 +74,14 @@ html {
   pointer-events: none;
   z-index: 1;
   opacity: 0.15;
-  background-image: 
+  background-image:
     linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
   background-size: 100px 100px;
-  animation: gridPulse 3s ease-in-out infinite;
+  animation: gridPulse 4s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: opacity;
+  backface-visibility: hidden;
 }
 
 @keyframes gridPulse {
@@ -192,12 +211,14 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
   background-size: 80px 80px;
-  animation: gridMove 15s linear infinite;
+  animation: gridMove 25s linear infinite;
   pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .image-container.main-hero::after {
@@ -264,6 +285,7 @@ html {
   background: var(--retro-black);
   gap: 40px;
   z-index: 2;
+  contain: layout style;
 }
 
 .main-content-top {
@@ -440,6 +462,8 @@ html {
   margin-top: 40px;
   position: relative;
   padding: 3rem 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }
 
 .speakers-section::before {
@@ -568,6 +592,8 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
   justify-content: center;
   margin-top: 40px;
   position: relative;
@@ -674,7 +700,69 @@ html {
   margin-top: 0.2em;
 }
 
-/* Sponsors Section */
+/* Supporters Section */
+section.supporters-section {
+  width: 100%;
+  position: relative;
+  padding: 3rem 2rem 4rem;
+  background: var(--retro-black);
+  border-top: 2px solid rgba(139, 92, 246, 0.4);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.4);
+  contain: layout style;
+}
+
+.supporters {
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.supporters-title {
+  color: var(--retro-white);
+  font-size: 56px;
+  font-family: 'Jersey 15', Serif;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+  margin: 0;
+}
+
+.supporters-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2em;
+}
+
+.supporter-info a {
+  display: block;
+  color: white;
+  background: transparent;
+  box-shadow: none;
+}
+
+.supporter-logo {
+  max-width: 220px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  padding: 1em;
+  border: 2px solid var(--retro-purple);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.supporter-logo:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  border-color: var(--retro-pink);
+}
+
+/* Sponsors Section - diagonal angle (5%) used consistently for all slanted edges */
 section.sponsors-section {
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
   width: 100%;
@@ -682,11 +770,15 @@ section.sponsors-section {
   margin-top: 50px;
   padding-top: 50px;
   clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
-  border-top: 2px solid var(--retro-purple);
-  border-bottom: 2px solid var(--retro-cyan);
-  box-shadow: 
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow:
     0 -10px 30px rgba(139, 92, 246, 0.3),
     0 10px 30px rgba(6, 182, 212, 0.3);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+  contain: layout style;
 }
 
 section.sponsors-section::before {
@@ -697,8 +789,7 @@ section.sponsors-section::before {
   width: 100%;
   height: 100px;
   background: var(--retro-black);
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
-  transform: skewY(-2deg);
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
   z-index: 1;
 }
 
@@ -810,28 +901,33 @@ section.sponsors-section h2 {
   background: linear-gradient(135deg, var(--retro-purple), var(--retro-pink));
   padding: 5em;
   margin: 0;
-  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
-  box-shadow: 
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow:
     0 0 30px rgba(139, 92, 246, 0.6),
     inset 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
 .sponsor-cta-top {
   position: relative;
-  height: 100px;
+  height: 80px;
   background: linear-gradient(135deg, var(--retro-purple), var(--retro-pink));
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
-  transform: skewY(2deg);
-  margin-bottom: -50px;
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .sponsor-cta-bottom {
   position: relative;
-  height: 100px;
+  height: 80px;
   background: linear-gradient(135deg, var(--retro-purple), var(--retro-pink));
-  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%);
-  transform: skewY(-2deg);
-  margin-top: -50px;
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .sponsor-cta-title {
@@ -982,6 +1078,25 @@ section.sponsors-section h2 {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* Diagonal strip between Schedule and Sponsors (matches sponsors-section angle) */
+.wavy-divider.diagonal-divider {
+  height: 120px;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.wavy-divider.diagonal-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899);
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+  opacity: 0.9;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Other Elements */
@@ -1345,14 +1460,13 @@ a {
   pointer-events: none;
 }
 
-/* Floating 3D Shapes - Simplified */
+/* Floating 3D Shapes */
 .floating-shape {
   position: absolute;
-  opacity: 0.15;
-  filter: blur(3px);
+  opacity: 0.12;
   will-change: transform;
   backface-visibility: hidden;
-  transform-style: preserve-3d;
+  transform: translateZ(0);
 }
 
 .shape-1 {

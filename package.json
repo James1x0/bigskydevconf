@@ -5,9 +5,11 @@
   "description": "Big Sky Dev Con website",
   "scripts": {
     "process-images": "node scripts/process-images.mjs",
-    "generate-photoswipe-json": "node scripts/generate-photoswipe-json.mjs"
+    "generate-photoswipe-json": "node scripts/generate-photoswipe-json.mjs",
+    "generate-favicons": "node scripts/generate-favicons.mjs"
   },
   "dependencies": {
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "to-ico": "^1.1.5"
   }
 }
