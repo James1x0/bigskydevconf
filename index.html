@@ -28,6 +28,13 @@
 </head>
 
 <body>
+  <script>
+    (function() {
+      if (localStorage.getItem('bsdc-theme') === 'oregon-trail') {
+        document.body.classList.add('oregon-trail-theme');
+      }
+    })();
+  </script>
   <!-- Retrowave Grid Overlay -->
   <div class="retro-grid-overlay"></div>
   
@@ -49,6 +56,10 @@
       <a href="https://bsdc26.eventbrite.com" target="_blank" class="tickets-btn">Tickets ▶▶▶</a>
     </div>
   </nav>
+
+  <div class="theme-toggle-wrap">
+    <button type="button" id="theme-toggle" class="theme-toggle-btn" title="Toggle Oregon Trail theme">🦌 Oregon Trail</button>
+  </div>
 
   <div class="bar"></div>
 
@@ -458,7 +469,7 @@
       <img src="assets/logo_tranp.png" alt="Big Sky Dev Con Logo" style="width: 200px; object-fit: contain;">
     </div>
   </div>
-  <p>Workiva is a registered trademark of Workiva Inc.</p>
+  <p>Workiva is a registered trademark of Workiva Inc.</p
 
       <div class="bison-herd">
     </div>
@@ -887,6 +898,21 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
       requestAnimationFrame(loop);
     })();
 
+  </script>
+  <script>
+    (function() {
+      var btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        document.body.classList.toggle('oregon-trail-theme');
+        var on = document.body.classList.contains('oregon-trail-theme');
+        localStorage.setItem('bsdc-theme', on ? 'oregon-trail' : '');
+        btn.textContent = on ? '✨ Back to normal' : '🦌 Oregon Trail';
+      });
+      if (document.body.classList.contains('oregon-trail-theme')) {
+        btn.textContent = '✨ Back to normal';
+      }
+    })();
   </script>
   <!-- <script type="module" src="./script.js"></script> -->
 
