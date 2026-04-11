@@ -766,11 +766,13 @@ section.supporters-section {
 }
 
 .supporter-logo {
+  box-sizing: border-box;
   max-width: 220px;
   max-height: 80px;
   width: auto;
   height: auto;
   object-fit: contain;
+  object-position: center;
   padding: 1em;
   border: 2px solid var(--retro-purple);
   clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
@@ -782,9 +784,13 @@ section.supporters-section {
   border-color: var(--retro-pink);
 }
 
+.supporters-logos .supporter-info {
+  flex-shrink: 0;
+}
+
 /* Sponsors Section - diagonal angle (5%) used consistently for all slanted edges */
 section.sponsors-section {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  background: white; /*linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));*/
   width: 100%;
   position: relative;
   margin-top: 50px;
@@ -816,8 +822,9 @@ section.sponsors-section::before {
 section.sponsors-section h1,
 section.sponsors-section h2,
 section.sponsors-section {
-  color: white;
+  color: var(--retro-black);
 }
+
 
 section.sponsors-section h2 {
   margin-bottom: 0;
