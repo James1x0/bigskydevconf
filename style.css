@@ -765,10 +765,31 @@ section.supporters-section {
   box-shadow: none;
 }
 
-.supporter-logo {
+.community-partner-logo {
   box-sizing: border-box;
   max-width: 220px;
   max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  padding: 1em;
+}
+
+.community-partner-info a {
+  display: block;
+  color: var(--retro-black);
+  background: transparent;
+  box-shadow: none;
+  border: 2px solid var(--retro-purple);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.supporter-logo {
+  box-sizing: border-box;
+  max-width: 220px;
+  max-height: 100px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1069,6 +1090,80 @@ section.sponsors-section h2 {
     0 0 10px rgba(139, 92, 246, 0.8),
     0 0 20px rgba(139, 92, 246, 0.6),
     0 0 30px rgba(236, 72, 153, 0.4);
+}
+
+/* Room block (Home2 Suites) — bottom of page */
+.room-block-section {
+  width: 100%;
+  padding: 3rem 1.5rem 4rem;
+  margin-bottom: 3em;
+  background: #fff;
+  border-top: 2px solid rgba(139, 92, 246, 0.35);
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.room-block-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.room-block-section .supporters-title {
+  margin-bottom: 0.25rem;
+  color: #141414;
+  text-shadow: none;
+}
+
+.room-block-section .text-bracket {
+  color: var(--retro-purple);
+  text-shadow: none;
+}
+
+.room-block-text {
+  margin: 0;
+  max-width: 36rem;
+  line-height: 1.55;
+  color: #2d2d2d;
+}
+
+.room-block-cta {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 16px 28px;
+  text-decoration: none;
+  color: var(--retro-white);
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--retro-purple), var(--retro-pink));
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.5);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.room-block-cta:hover {
+  color: var(--retro-white);
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.75);
+}
+
+.room-block-logo-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  line-height: 0;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #fafafa;
+}
+
+.room-block-logo {
+  max-width: min(240px, 100%);
+  height: auto;
+  object-fit: contain;
 }
 
 /* Gallery */
@@ -1778,8 +1873,26 @@ body.oregon-trail-theme #schedule > li a {
 body.oregon-trail-theme #schedule .title {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-body.oregon-trail-theme a:not(.navbar-items a):not(.calendar-button a) {
+body.oregon-trail-theme a:not(.navbar-items a):not(.calendar-button a):not(.room-block-cta):not(.room-block-logo-link) {
   color: #c4a574;
+}
+
+body.oregon-trail-theme .room-block-section {
+  background: #fff;
+  border-top-color: rgba(107, 68, 35, 0.45);
+  color: #1a1a1a;
+}
+
+body.oregon-trail-theme .room-block-section .supporters-title {
+  color: #141414;
+}
+
+body.oregon-trail-theme .room-block-section .text-bracket {
+  color: #6b4423;
+}
+
+body.oregon-trail-theme .room-block-section .room-block-text {
+  color: #2d2d2d;
 }
 body.oregon-trail-theme .hero-3d-bg .floating-shape {
   opacity: 0.15;
