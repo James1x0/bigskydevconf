@@ -3,28 +3,98 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Big Sky Dev Con 2026</title>
-  <meta property="og:title" content="Big Sky Dev Con 2026">
-  <meta property="og:description" content="July 24-25th, 2026 - Montana's summer technology conference is back!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Big Sky Dev Con 2026 — Montana's Summer Tech Conference | July 24-25, Bozeman</title>
+  <meta name="description" content="Big Sky Dev Con is a two-day tech conference in Bozeman, Montana — July 24-25, 2026. Talks on htmx, AI, Rust, Flutter, game dev, and more. Hosted by Montana Programmers.">
+  <link rel="canonical" href="https://www.bigskydevcon.com/">
+  <meta property="og:title" content="Big Sky Dev Con 2026 — Montana's Summer Tech Conference">
+  <meta property="og:description" content="Two days of talks on htmx, AI, Rust, Flutter, game dev, space tech, and more. July 24-25 in Bozeman, Montana. No corporate keynotes — just real people shipping real things.">
   <meta property="og:image" content="https://assets.bigskydevcon.com/background.png">
-  <meta property="og:url" content="https://www.bigskydevcon.com">
+  <meta property="og:url" content="https://www.bigskydevcon.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Big Sky Dev Con">
-  <!-- Favicon package (generated from assets/logo_tranp.png via npm run generate-favicons) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Big Sky Dev Con 2026 — Montana's Summer Tech Conference">
+  <meta name="twitter:description" content="Two days of talks on htmx, AI, Rust, Flutter, game dev, space tech, and more. July 24-25 in Bozeman, Montana.">
+  <meta name="twitter:image" content="https://assets.bigskydevcon.com/background.png">
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
   <link rel="manifest" href="./site.webmanifest">
-  <!-- Optional: Replace with your Facebook app ID if you have one -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./style.css?cache=1">
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;400;800&display=swap"
     rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Big Sky Dev Con 2026",
+    "description": "A two-day tech conference in Bozeman, Montana featuring talks on htmx, AI, Rust, Flutter, game dev, space tech, and more. Hosted by Montana Programmers.",
+    "startDate": "2026-07-24",
+    "endDate": "2026-07-25",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": [
+      {
+        "@type": "Place",
+        "name": "The Rialto",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bozeman",
+          "addressRegion": "MT",
+          "addressCountry": "US"
+        }
+      },
+      {
+        "@type": "Place",
+        "name": "Strand Union Building, Montana State University",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bozeman",
+          "addressRegion": "MT",
+          "postalCode": "59717",
+          "addressCountry": "US"
+        }
+      }
+    ],
+    "image": "https://assets.bigskydevcon.com/background.png",
+    "url": "https://www.bigskydevcon.com/",
+    "organizer": {
+      "@type": "Organization",
+      "name": "Montana Programmers",
+      "url": "https://www.montanaprogrammers.org"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://bsdc26.eventbrite.com",
+      "availability": "https://schema.org/InStock"
+    },
+    "performer": [
+      {"@type": "Person", "name": "Carson Gross"},
+      {"@type": "Person", "name": "Alexander Petros"},
+      {"@type": "Person", "name": "Christian Tanul"},
+      {"@type": "Person", "name": "Barrett Breshears"},
+      {"@type": "Person", "name": "Stephen Mitchell"},
+      {"@type": "Person", "name": "Scott McKinney"},
+      {"@type": "Person", "name": "Brooke Kuhlmann"},
+      {"@type": "Person", "name": "Ronan Berder"},
+      {"@type": "Person", "name": "Lazarus Morrison"},
+      {"@type": "Person", "name": "Lance Fisher"},
+      {"@type": "Person", "name": "Jaron Jones"},
+      {"@type": "Person", "name": "Thomas Schilling"},
+      {"@type": "Person", "name": "Anthony Alaribe"},
+      {"@type": "Person", "name": "Mike Frandsen"},
+      {"@type": "Person", "name": "Marcus Twichel"},
+      {"@type": "Person", "name": "Jerason Banes"}
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -85,6 +155,44 @@
     </div>
   </div>
 
+  <div class="topics-marquee" aria-label="Talk topics">
+    <div class="topics-marquee-track" id="topics-track"></div>
+  </div>
+  <script>
+    (function() {
+      var topics = [
+        '</> Hypermedia & htmx', 'htmx 4.0', 'AI Agents', 'Rust & WASM',
+        'Flutter & Dart', 'Space Tech & ISS', 'Tailwind & Modern CSS',
+        'Transformers & GPTs', 'Game Dev', 'Java & Metaprogramming',
+        'Linux & NVIDIA', 'Databases & Performance', 'Compression & Algorithms',
+        'Ruby & Hanami', 'Claude Code', 'Open Source', 'Retro Computing',
+        'Native Mobile', 'Leadership & Career', 'SpacetimeDB', 'Bevy Engine',
+        'WebAssembly', 'CSS View Transitions', 'Kotlin & Spring Boot',
+        'Haskell', 'Type Systems & DSLs', 'Triptych HTML', 'HypeApps',
+        'NVIDIA Orin', 'ORMs & Redis', 'Strands SDK',
+        'Accessibility', 'Prompt Engineering', '3D Multiplayer',
+        'Cognitive Vandalism', 'CSS :has() & if()', 'Entrepreneurship'
+      ];
+      for (var i = topics.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = topics[i]; topics[i] = topics[j]; topics[j] = t;
+      }
+      var track = document.getElementById('topics-track');
+      var html = '';
+      var idx = 0;
+      for (var r = 0; r < 2; r++) {
+        for (var k = 0; k < topics.length; k++) {
+          var escaped = topics[k].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          var delay = (idx * 0.4) % 8;
+          html += '<span class="topic-tag glitch-text" data-text="' + escaped + '" style="--g:' + delay.toFixed(1) + '">' + escaped + '</span>';
+          html += '<span class="topic-sep">//</span>';
+          idx++;
+        }
+      }
+      track.innerHTML = html;
+    })();
+  </script>
+
   <div class="main-content flex-container flex-column">
     <div class="main-content-top flex-container flex-row">
 
@@ -104,28 +212,33 @@
         </div>
       </div>
 
-      <div class="about-section flex-container flex-column">
-        <div class="about-text text-body">
-          <p>Big Sky Dev Con is a summer tech conference in Bozeman, Montana, hosted by Montana Programmers.
-          <p>Join Montana's tech community this July and get inspired to build something a little wild. If you're tired of boring conferences, this is your kind of conference.</p>
-        </div>  
+      <div class="about-section">
+        <div class="about-text">
+          <p>BSDC is a two-day tech conference in Bozeman, Montana, hosted by the folks at <a href="https://www.montanaprogrammers.org" target="_blank">Montana Programmers</a>. We bring together developers, engineers, and builders from across the state and beyond for talks that actually matter &mdash; hypermedia, AI, systems programming, game dev, and everything in between.</p>
+          <p>No corporate keynotes. No "thought leadership." Just real people shipping real things, sharing what they've learned, and hanging out in one of the most beautiful places on earth.</p>
+          <p>We've pulled in over 160,000 video views and 600 attendees since rebooting in 2024. This year we're going bigger &mdash; more speakers, lower ticket prices, and the best lineup yet. If you're tired of boring conferences, come build something a little wild with us.</p>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat">
+            <span class="about-stat-number">16+</span>
+            <span class="about-stat-label">Speakers</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-number">2</span>
+            <span class="about-stat-label">Days</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-number">600+</span>
+            <span class="about-stat-label">Past Attendees</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-number">160K+</span>
+            <span class="about-stat-label">Video Views</span>
+          </div>
+        </div>
       </div>
     </div>
 
-
-    <!-- Wavy Divider -->
-    <div class="wavy-divider">
-      <svg viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,50 Q300,0 600,50 T1200,50 L1200,100 L0,100 Z" fill="url(#waveGradient)" opacity="0.6"/>
-        <defs>
-          <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#ec4899;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
 
     <!-- Speakers Section -->
     <div class="speakers-section flex-container flex-column">
@@ -140,82 +253,98 @@
         <div class="speaker">
           <img src="assets/speakers/carson.jpg" alt="Carson Gross" loading="lazy" />
           <div class="speaker-name">Carson Gross</div>
-          <div class="speaker-info">Big Sky Software, Janitor. Creator of htmx.</div>
+          <div class="speaker-talk">htmx 4: what's new</div>
+          <div class="speaker-info">https://grugbrain.dev</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/alex.jpg" alt="Alexander Petros" loading="lazy" />
           <div class="speaker-name">Alexander Petros</div>
-          <div class="speaker-info">Software engineer at the IRS specializing in making web systems reliable, accessible, and cost-effective. Co-author of the Triptych HTML proposals.</div>
+          <div class="speaker-talk">Hypermedia is for Governments</div>
+          <div class="speaker-info">Alexander Petros is a software engineer who specializes in making web systems reliable, accessible, and cost-effective. He is the co-author of the Triptych HTML proposals, which would make HTML dramatically more capable with just three small changes. He is currently an Engineering Lead at the IRS. (speaking in his personal capacity)</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/christian.jpg" alt="Christian Tanul" loading="lazy" />
           <div class="speaker-name">Christian Tanul</div>
-          <div class="speaker-info">Created the server-commands extension for htmx, working with Carson on htmx 4.0. Full-time on the project redesigning the site, rewriting docs, and refining the codebase.</div>
+          <div class="speaker-talk">An Almost-Serious 3D Multiplayer in the Browser: Rust, WASM &amp; SpacetimeDB</div>
+          <div class="speaker-info">I created the server-commands extension for htmx, which led to working with Carson on htmx 4.0. Since then I've been full-time on the project, redesigning the site, rewriting docs, and refining the codebase. I self-host all my experiments and pray my hardware doesn't die during live demos (again).</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/barrett.jpg" alt="Barrett Breshears" loading="lazy" />
           <div class="speaker-name">Barrett Breshears</div>
-          <div class="speaker-info">Staff Engineer at Bridger Aerospace. Over a decade building native iOS and cross-platform software, focused on local-first AI and applied ML systems.</div>
+          <div class="speaker-talk">Cognitive Vandalism: What I Learned by Mutilating a GPT</div>
+          <div class="speaker-info">Barrett Breshears is a Staff Engineer at Bridger Aerospace, where he works on mission-critical mobile systems and data-driven applications. He has been building native iOS and cross-platform software for over a decade and has recently focused on local-first AI, large language models, and applied ML systems.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/stephen.jpg" alt="Stephen Mitchell" loading="lazy" />
           <div class="speaker-name">Stephen Mitchell</div>
-          <div class="speaker-info">Lead Engineer at Volume.com. 30+ years in full-stack web development, from BASIC on an Apple IIGS to modern game development.</div>
+          <div class="speaker-talk">Modern Game Development: A Survey</div>
+          <div class="speaker-info">Stephen has been working in full-stack web development for over 30 years. He began programming in BASIC on an Apple IIGS, earned a Master's in CS from Penn State, and has worked across industries including manufacturing, biotech, and currently video streaming. He lives outside Philadelphia, where he teaches his children BASIC on an Apple IIGS.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/scott.jpg" alt="Scott McKinney" loading="lazy" />
           <div class="speaker-name">Scott McKinney</div>
-          <div class="speaker-info">Creator of the Manifold project, a compiler plugin for Java's type system. Creator and lead developer of the Gosu programming language at Guidewire Software.</div>
+          <div class="speaker-talk">Metaprogramming in Java with Manifold</div>
+          <div class="speaker-info">Scott created the Manifold project, a compiler plugin that adds new capabilities to Java's type system, and is the creator and lead developer of the Gosu programming language at Guidewire Software. Through Manifold, he explores ways to push type system innovation and make statically typed languages more expressive.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/brooke.jpg" alt="Brooke Kuhlmann" loading="lazy" />
           <div class="speaker-name">Brooke Kuhlmann</div>
-          <div class="speaker-info">Bootstrapped engineer, entrepreneur, and software consultant at Alchemists. Focused on the joy of the craft, leveling up teams, and open source tooling.</div>
+          <div class="speaker-talk">htmx View Transitions</div>
+          <div class="speaker-info">I'm a bootstrapped engineer, entrepreneur, and software consultant focused on the joy of the craft, leveling up teams, and providing tooling (both open source and paid) that constantly elevates the engineering experience.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/ronan.jpg" alt="Ronan Berder" loading="lazy" />
           <div class="speaker-name">Ronan Berder</div>
-          <div class="speaker-info">Chief Janitor Officer at Rotsu. Built apps for tens of millions of users in China. Sold his company in 2022 and stepped down after 14 years.</div>
+          <div class="speaker-talk">I have no idea what I'm doing</div>
+          <div class="speaker-info">Army brat. I bounced around France and Tahiti before moving to China in 2005 to work in tech. I started a company, building apps for tens of millions of users. I sold it in 2022 and stepped down 14 months ago. I went back to coding and started a few open source projects (Pages CMS, Basecoat, /dev/push). Starting a new startup now.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/lazarus.jpg" alt="Lazarus Morrison" loading="lazy" />
           <div class="speaker-name">Lazarus Morrison</div>
-          <div class="speaker-info">Principal AI Solutions Engineer at College of the Holy Cross. 20 years as a Web Developer, host of hx-pod the hypermedia podcast and Hypermedia TV.</div>
+          <div class="speaker-talk">HTML is not just for the web</div>
+          <div class="speaker-info">20 years as a Web Developer, Host of hx-pod the hypermedia podcast and Hypermedia TV on youtube.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/lance.jpg" alt="Lance Fisher" loading="lazy" />
           <div class="speaker-name">Lance Fisher</div>
-          <div class="speaker-info">Founder of fisher.io. Helped plant the Missoula Workiva office, VP of Engineering at Submittable, most recently Senior Engineer at a top tech company.</div>
+          <div class="speaker-talk">Intro to Compression Techniques</div>
+          <div class="speaker-info">Lance helped plant the Missoula Workiva office prior to IPO. He joined Submittable as VP of Engineering as it grew from 15 to 130 employees through two funding rounds. Most recently, Lance was Senior Director of Engineering at onXmaps. He was awarded a patent for the invention of a new digital elevation map (DEM) compression algorithm.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/jaron.jpg" alt="Jaron Jones" loading="lazy" />
           <div class="speaker-name">Jaron Jones</div>
-          <div class="speaker-info">CIO at ELM Utility Services, based out of Missoula. 1800 employees selling services and software to over 50 utility companies.</div>
+          <div class="speaker-talk">Executor, Orchestrator, Leader!</div>
+          <div class="speaker-info">Current: CIO at ELM Utility Services. Based out of Missoula, we have 1800 employees and sell services, including software to over 50 utility companies. Previous: Data Scientist, Lecturer, Computational Researcher (AI/ML/Epidemiology in the pharmacology space)</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/thomas.jpg" alt="Thomas Schilling" loading="lazy" />
           <div class="speaker-name">Thomas Schilling</div>
-          <div class="speaker-info">Founder of PhotoQuest. Builds products with Spring Boot, Kotlin, and AI. Creator of Spring ViewComponent, regular speaker at Devoxx and JavaLand.</div>
+          <div class="speaker-talk">Claude Code for JVM Developers</div>
+          <div class="speaker-info">Thomas Schilling builds products with Spring Boot, Kotlin, and increasingly, AI. He's the creator of Spring ViewComponent, founder of PhotoQuest, and a regular speaker at conferences like Devoxx, JavaZone, Spring I/O, as well as JUGs across Europe.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/anthony.jpg" alt="Anthony Alaribe" loading="lazy" />
           <div class="speaker-name">Anthony Alaribe</div>
-          <div class="speaker-info">Cofounder at Monoscope.tech, an htmx-aware software monitoring startup. Spent a decade building software at Opera and DeliveryHero.</div>
+          <div class="speaker-talk">JavaScript? In This Economy?</div>
+          <div class="speaker-info">Anthony has spent a decade building software at companies like Opera, and DeliveryHero. Now he's a founder of a HTMX aware software monitoring startup, monoscope.tech. Say hi when you see him. He loves conversations about abusing tech, databases and less popular programming languages. Monoscope is written in Haskell and HTMX (it's Open source)</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/michael.jpg" alt="Mike Frandsen" loading="lazy" />
           <div class="speaker-name">Mike Frandsen</div>
-          <div class="speaker-info">Principal Software Engineer at Cambrian Works leading on-orbit operations for ISS hardware. Previously Director of Data Science.</div>
+          <div class="speaker-talk">Running a Linux Software Stack Literally Beyond the Cloud(s)</div>
+          <div class="speaker-info">Mike Frandsen is a Principal Software Engineer at Cambrian Works leading on-orbit operations for ISS hardware. He worked previously as a Director of Data Science and prior to that developed software for speech recognition and translation at SRI International. He has coached FIRST LEGO League and is co-founder of Highline Tech MT.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/marcus.jpg" alt="Marcus Twichel" loading="lazy" />
           <div class="speaker-name">Marcus Twichel</div>
-          <div class="speaker-info">Engineering Lead at Very Good Ventures. Software engineer in Montana since 2018, led teams for Universal Studios, Toyota Motors, and Dutch Bros. Google Developer Expert for Flutter.</div>
+          <div class="speaker-talk">Your Business Doesn't Fit on a Phone</div>
+          <div class="speaker-info">I've been a software engineer living in Montana since 2018. Recently I've led teams working for Universal Studios, Toyota Motors, and Dutch Bros Coffee. I'm also a Google Developer Expert for Flutter &amp; Dart.</div>
         </div>
         <div class="speaker">
           <img src="assets/speakers/jerason.jpg" alt="Jerason Banes" loading="lazy" />
           <div class="speaker-name">Jerason Banes</div>
-          <div class="speaker-info">Founder of Invirgance. Software developer and educator focused on making enterprise application development simpler and less dependent on unnecessary abstraction.</div>
+          <div class="speaker-talk">ORMs are Killing Your Performance</div>
+          <div class="speaker-info">Jerason Banes is a software developer and educator focused on making enterprise application development simpler, more durable, and less dependent on unnecessary abstraction.</div>
         </div>
       </div>
     </div>
@@ -225,181 +354,27 @@
       <div class="schedule-header">
         <h2 class="schedule-title text-title">
           <span class="text-bracket">{</span>
-          Schedule TBD
+          Schedule
           <span class="text-bracket">}</span>
-
         </h2>
       </div>
-      <!-- <div class="schedule-list">
-        <div class="schedule-block">
-          <div class="block-time">8:00am - 9:00am</div>
-          <div class="block-title">Check in</div>
-          <div class="block-content">
-            Light breakfast offered
+      <div class="schedule-days">
+        <div class="schedule-day">
+          <div class="schedule-day-header">
+            <h3 class="schedule-day-title">Day 1 &mdash; July 24th</h3>
+            <p class="schedule-day-venue">The Rialto, Bozeman</p>
           </div>
-          <div class="block-extra"></div>
+          <div class="schedule-day-note">Full speaker schedule coming soon</div>
         </div>
-        <div class="schedule-block">
-          <div class="block-time">9:00am - 9:10am</div>
-          <div class="block-title">Opening Remarks</div>
-          <div class="block-content">
-            From Montana Programmers & BSDC Organizer
+        <div class="schedule-day">
+          <div class="schedule-day-header">
+            <h3 class="schedule-day-title">Day 2 &mdash; July 25th</h3>
+            <p class="schedule-day-venue">Strand Union Building, MSU</p>
           </div>
-          <div class="block-extra"></div>
+          <div class="schedule-day-note">Full speaker schedule coming soon</div>
         </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">9:15am - 9:35am</div>
-          <div class="block-title">Carson Gross</div>
-          <div class="block-content">
-            API Design
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">9:40am - 10:00am</div>
-          <div class="block-title">Stephanie Gredell</div>
-          <div class="block-content">
-            From Human To Bots
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">10:05am - 10:25am</div>
-          <div class="block-title">typecraft  (Chris Power)</div>
-          <div class="block-content">
-            VaaS (Vim as a service) -- How to teach vim to thousands of people with Rails and Go
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">10:30am - 10:50am</div>
-          <div class="block-title">Robert Wagner</div>
-          <div class="block-content">
-            HTML is stealing our jobs!
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">10:55am - 11:15am</div>
-          <div class="block-title">Warren Buffering</div>
-          <div class="block-content">
-            Browsers are for Reads, Native Apps are for Writes
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">11:20am - 11:40am</div>
-          <div class="block-title">Jon-Michael Hartway</div>
-          <div class="block-content">
-            Building things for twitter clout(http://x.com/)
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block">
-          <div class="block-time">11:40am - 12:50pm</div>
-          <div class="block-title">Lunch & Live Podcast<br />Whiskey Web and Whatnot</div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">12:55pm - 1:15pm</div>
-          <div class="block-title">Ken Wheeler</div>
-          <div class="block-content">
-            you can just build things
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">1:20pm - 1:40pm</div>
-          <div class="block-title">Duncan Lutz</div>
-          <div class="block-content">
-            Potatoes Go Brrr: Adventures in High-Speed Embedded Rust
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">1:45pm - 2:05pm</div>
-          <div class="block-title">Mike Amundsen</div>
-          <div class="block-content">
-            Making Connections and Solving Problems : Hypermedia's Legacy and Future
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">2:10pm - 2:30pm</div>
-          <div class="block-title">Barrett A Breshears</div>
-          <div class="block-content">
-            Backends?!? Where we are going we don't need backends
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">2:35pm - 2:55pm</div>
-          <div class="block-title">Adam Stepinski</div>
-          <div class="block-content">
-            Extending vs Scripting: Lessons from building the Hyperview client
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block">
-          <div class="block-time">2:55pm - 3:15pm</div>
-          <div class="block-title">Afternoon Break</div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">3:20pm - 3:40pm</div>
-          <div class="block-title">Alex Petros</div>
-          <div class="block-content">
-            What's Left for Frontend Engineers?
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">3:45pm - 4:05pm</div>
-          <div class="block-title">Dennis Ivy</div>
-          <div class="block-content">
-            Why good developers fail interviews
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">4:10pm - 4:30pm</div>
-          <div class="block-title">Turner Houghton</div>
-          <div class="block-content">
-            JSX minus react plus htmx
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">4:35pm - 4:55pm</div>
-          <div class="block-title">Tony Ennis</div>
-          <div class="block-content">
-            The Platform and a Stylesheet (A path to Platform <> SPA Parity)
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block schedule-block--speaker">
-          <div class="block-time">5:00pm - 5:20pm</div>
-          <div class="block-title">Dan Vail</div>
-          <div class="block-content">
-            I'm dumb and so can you!
-          </div>
-          <div class="block-extra"></div>
-        </div>
-        <div class="schedule-block">
-          <div class="block-time">5:25pm - 5:30pm</div>
-          <div class="block-title">Closing Remarks</div>
-        </div>
-        <div class="schedule-block">
-          <div class="block-time">5:30pm - 5:40pm</div>
-          <div class="block-title">On Stage Group Photo</div>
-        </div>
-        <div class="schedule-block">
-          <div class="block-time">7:00pm - 9:00pm</div>
-          <div class="block-title">After party at the SHINE Brewery!</div>
-        </div>
-      </div> -->
+      </div>
   </div>
-  
-  <!-- Diagonal Divider (Schedule → Sponsors) -->
-  <div class="wavy-divider diagonal-divider"></div>
 
   <section class="sponsors-section">
     <div class="sponsors flex-container flex-column">
