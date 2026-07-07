@@ -2296,6 +2296,23 @@ body.oregon-trail-theme .hero-3d-bg .floating-shape {
   font-style: italic;
 }
 
+.schedule-preview-item--more {
+  border-bottom-style: none;
+  padding-bottom: 0;
+}
+
+.schedule-preview-item--more .schedule-preview-time {
+  color: var(--retro-pink-bright);
+  text-shadow: 0 0 8px rgba(236, 72, 153, 0.4);
+  letter-spacing: 0.15em;
+}
+
+.schedule-preview-item--more .schedule-preview-title {
+  color: var(--retro-pink-bright);
+  font-style: italic;
+  font-size: 0.82em;
+}
+
 .schedule-cta-wrap {
   width: 100%;
   max-width: 900px;
