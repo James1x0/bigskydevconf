@@ -233,9 +233,9 @@
           <div class="talk-body">
             <img class="talk-photo" src="assets/speakers/thomas.jpg" alt="Thomas Schilling" loading="lazy" />
             <div class="talk-text">
-              <h3 class="talk-title">Claude Code for JVM Developers</h3>
+              <h3 class="talk-title">Agentic Engineering for JVM Developers</h3>
               <div class="talk-speaker">Thomas Schilling</div>
-              <p class="talk-desc">If you are not using Claude Code for your development in 2026 you are seriously missing out on a massive speedup in your development workflow! Ever since the Claude Opus 4.5 release the Claude Code CLI has sped up my development workflow immensely. I cannot tell you what the best workflow in 4 weeks is much less in 4 months. But I’m convinced that if you don’t keep up to date you are going to be left behind.</p>
+              <p class="talk-desc">Coding agents change more than how we write code. They change how we design, guide, and review software. Drawing from my work with Claude Code and Codex, I will share the patterns that made agentic development reliable: durable context, strong feedback loops, guardrails, and structured workflows. You will leave with practical ideas for adapting your JVM projects and your own role to a development process where agents do the implementation.</p>
             </div>
           </div>
         </div>
@@ -277,11 +277,23 @@
         </div>
 
         <div class="talk-card talk-card--minor">
-          <div class="talk-time">11:40 AM &ndash; 12:50 PM</div>
+          <div class="talk-time">11:40 AM &ndash; 12:20 PM</div>
           <div class="talk-body">
             <div class="talk-text">
               <h3 class="talk-title">Lunch</h3>
-              <p class="talk-note">70 minutes &mdash; grab lunch and mingle.</p>
+              <p class="talk-note">40 minutes &mdash; grab lunch and mingle.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="talk-card">
+          <div class="talk-time">12:20 &ndash; 12:45 PM</div>
+          <div class="talk-body">
+            <img class="talk-photo" src="assets/speakers/sandhya.jpg" alt="Sandhya Subramani" loading="lazy" />
+            <div class="talk-text">
+              <h3 class="talk-title">Prompt Engineering Isn&rsquo;t Enough: Building AI Agents You Can Steer</h3>
+              <div class="talk-speaker">Sandhya Subramani</div>
+              <p class="talk-desc">Prompt engineering can get an agent to work in a demo. It isn&rsquo;t enough to create a reliable agent in production. The issue is control. Prompts are static instructions, but agent behavior is dynamic and agents lose context the longer your prompts are. This session introduces a practical pattern for adding an additional control layer to agent systems: steering. Using the Strands Agents SDK, we&rsquo;ll walk through how to implement steering hooks. You&rsquo;ll see how to intercept tool calls before they execute, validate inputs and sequencing, and enforce constraints on outputs after the model responds.</p>
             </div>
           </div>
         </div>
@@ -424,6 +436,7 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
     })();
   </script>
+  <script src="livebar.js"></script>
 
 </body>
 
