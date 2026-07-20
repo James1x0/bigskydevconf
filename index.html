@@ -704,6 +704,7 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
     });
 
     let flashClock = false;
+    let setPixelFireworks = false;
 
     countdown();
     setInterval(countdown, 1000);
@@ -819,25 +820,28 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
     });
 
 
-    let setPixelFireworks = false;
     function countdown () {
-      const conferenceDate = moment(new Date('2026-07-24T08:00:00Z'));
+      // Doors: July 24, 3:00 PM Mountain (MDT = UTC-6) -> 21:00 UTC
+      const conferenceStart = moment(new Date('2026-07-24T21:00:00Z'));
+      // Wrap: July 26, 12:00 AM Mountain (end of Day 2) -> 06:00 UTC on 7/26
+      const conferenceEnd = moment(new Date('2026-07-26T06:00:00Z'));
       const countdownEl = document.querySelector('.conference-text .countdown');
       const now = moment();
-      const duration = moment.duration(conferenceDate.diff(now));
+      const duration = moment.duration(conferenceStart.diff(now));
       const timeLeft = {
         days: Math.floor(duration.asDays()),
         hours: duration.hours(),
         minutes: duration.minutes(),
         seconds: duration.seconds(),
       }
-      const isConferenceDay = now.toDate() > conferenceDate.toDate() && now.toDate() < conferenceDate.clone().add(2, 'days').toDate();
+      const isConferenceLive = now.toDate() >= conferenceStart.toDate() && now.toDate() < conferenceEnd.toDate();
+      const isWrapped = now.toDate() >= conferenceEnd.toDate();
       const livestreamBtn = document.querySelector('.livestream-btn');
       const ticketsBtn = document.querySelector('.tickets-btn');
 
-      if (isConferenceDay) {
+      if (isConferenceLive) {
         if (livestreamBtn) {
-        livestreamBtn.style.display = 'block';
+          livestreamBtn.style.display = 'block';
           livestreamBtn.style.visibility = 'visible';
         }
         if (ticketsBtn) {
@@ -850,14 +854,19 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
           setPixelFireworks = true;
         }
       } else {
-        const livestreamBtn = document.querySelector('.livestream-btn');
         if (livestreamBtn) {
           livestreamBtn.style.display = 'none';
           livestreamBtn.style.visibility = 'hidden';
         }
         if (ticketsBtn) {
-          ticketsBtn.style.display = 'block';
-          ticketsBtn.style.visibility = 'visible';
+          // Tickets are moot once the show has wrapped.
+          ticketsBtn.style.display = isWrapped ? 'none' : 'block';
+          ticketsBtn.style.visibility = isWrapped ? 'hidden' : 'visible';
+        }
+
+        if (isWrapped && setPixelFireworks) {
+          togglePixelFireworks(false);
+          setPixelFireworks = false;
         }
       }
 
@@ -865,7 +874,15 @@ What are you doing here? You should go register for BSDC instead: https://bsdc25
       flashClock = !flashClock;
 
       if (countdownEl) {
-        countdownEl.innerText = isConferenceDay ? '🎉 Welcome To BSDC 2026!' : `{ ${timeLeft.days}${sep}${timeLeft.hours}${sep}${timeLeft.minutes}${sep}${timeLeft.seconds} }`
+        let text;
+        if (isConferenceLive) {
+          text = '🎉 Welcome To BSDC 2026!';
+        } else if (isWrapped) {
+          text = "🤠 That's a wrap!";
+        } else {
+          text = `{ ${timeLeft.days}${sep}${timeLeft.hours}${sep}${timeLeft.minutes}${sep}${timeLeft.seconds} }`;
+        }
+        countdownEl.innerText = text;
       }
     }
 
