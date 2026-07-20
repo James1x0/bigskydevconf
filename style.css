@@ -2419,6 +2419,82 @@ body.oregon-trail-theme .hero-3d-bg .floating-shape {
   color: var(--retro-cyan);
 }
 
+.day-directions {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(139, 92, 246, 0.12));
+  border: 2px solid var(--retro-cyan);
+  border-left: 6px solid var(--retro-cyan);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.28), inset 0 0 15px rgba(6, 182, 212, 0.08);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.day-directions-title {
+  font-family: 'Jersey 15', serif;
+  font-size: clamp(24px, 4vw, 32px);
+  color: var(--retro-cyan);
+  margin: 0 0 1rem;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+}
+
+.day-directions-body {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 42%);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.day-directions-text p {
+  font-family: 'Source Code Pro', monospace;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92em;
+  line-height: 1.6;
+  margin: 0 0 0.9rem;
+}
+
+.day-directions-text p:last-child {
+  margin-bottom: 0;
+}
+
+.day-directions-text a {
+  color: var(--retro-cyan);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.day-directions-text a:hover {
+  color: var(--retro-pink-bright);
+}
+
+.day-directions-note {
+  color: var(--retro-pink-bright) !important;
+}
+
+.day-directions-map {
+  display: block;
+  border: 2px solid var(--retro-purple);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.3);
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.day-directions-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.day-directions-map:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.5);
+}
+
+@media (max-width: 640px) {
+  .day-directions-body {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
 .talk-list {
   display: flex;
   flex-direction: column;
